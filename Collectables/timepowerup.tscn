@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7ir8hamn232t"]
+
+[ext_resource type="Script" path="res://Collectables/timepowerup.gd" id="1_3ds65"]
+[ext_resource type="Texture2D" uid="uid://bjh3mx0ywf7ba" path="res://Assets/PixelPlatform/tiles_packed.png" id="2_8ebmo"]
+[ext_resource type="Texture2D" uid="uid://bpjie8q61oiaw" path="res://Assets/BoardIcons/iconsDefault.png" id="3_upky3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4co0"]
+atlas = ExtResource("3_upky3")
+region = Rect2(1088, 576, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaxa4"]
+atlas = ExtResource("3_upky3")
+region = Rect2(1024, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eifto"]
+atlas = ExtResource("3_upky3")
+region = Rect2(1088, 512, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wrn8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4co0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaxa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eifto")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yj3or"]
+radius = 7.07107
+
+[node name="TimePowerUp" type="Area2D" groups=["timepowerups"]]
+script = ExtResource("1_3ds65")
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.596078)
+position = Vector2(0, 10)
+scale = Vector2(0.833333, 0.388889)
+texture = ExtResource("2_8ebmo")
+region_enabled = true
+region_rect = Rect2(198, 126, 18, 18)
+
+[node name="CoinAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.213751, 0.20565)
+sprite_frames = SubResource("SpriteFrames_wrn8k")
+autoplay = "default"
+frame = 1
+frame_progress = 0.406112
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_yj3or")
+
+[node name="Lifetime" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_timer_timeout"]

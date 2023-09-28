@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuktccve3xcri"]
+
+[ext_resource type="Texture2D" uid="uid://bjh3mx0ywf7ba" path="res://Assets/PixelPlatform/tiles_packed.png" id="1_m71j5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cqila"]
+radius = 7.0
+height = 20.0
+
+[node name="Cactus" type="Area2D" groups=["obstacles"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m71j5")
+region_enabled = true
+region_rect = Rect2(126, 108, 18, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cqila")

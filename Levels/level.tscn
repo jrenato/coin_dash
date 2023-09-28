@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://chatal8lyufci"]
+
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_15x17"]
+[ext_resource type="PackedScene" uid="uid://bwqnk8i3m6w71" path="res://Player/player.tscn" id="1_jxhpx"]
+[ext_resource type="PackedScene" uid="uid://c1ops51hvuixr" path="res://Collectables/coin.tscn" id="2_rkkmr"]
+[ext_resource type="PackedScene" uid="uid://c7ir8hamn232t" path="res://Collectables/timepowerup.tscn" id="3_888cy"]
+[ext_resource type="Texture2D" uid="uid://bjh3mx0ywf7ba" path="res://Assets/PixelPlatform/tiles_packed.png" id="3_dt5qu"]
+[ext_resource type="PackedScene" uid="uid://3j4tqlalvks4" path="res://UI/hud.tscn" id="3_oeiid"]
+[ext_resource type="AudioStream" uid="uid://dd62fqoraws6i" path="res://Assets/Sounds/coin3.ogg" id="6_ktovo"]
+[ext_resource type="AudioStream" uid="uid://cuu8t4urtwrmh" path="res://Assets/Sounds/gameover2.ogg" id="7_7ifs7"]
+[ext_resource type="AudioStream" uid="uid://c22v3wk82q2y1" path="res://Assets/Sounds/upgrade5.ogg" id="8_rhx1f"]
+[ext_resource type="AudioStream" uid="uid://c1r3lfar3udi6" path="res://Assets/Sounds/upgrade1.ogg" id="9_7cq6h"]
+[ext_resource type="PackedScene" uid="uid://cuktccve3xcri" path="res://Obstacles/cactus.tscn" id="11_o5mxe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur4cr"]
+atlas = ExtResource("3_dt5qu")
+region = Rect2(324, 18, 18, 18)
+
+[node name="Level" type="Node"]
+script = ExtResource("1_15x17")
+coin_scene = ExtResource("2_rkkmr")
+powerup_scene = ExtResource("3_888cy")
+
+[node name="HUD" parent="." instance=ExtResource("3_oeiid")]
+unique_name_in_owner = true
+
+[node name="GameTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ur4cr")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("1_jxhpx")]
+unique_name_in_owner = true
+position = Vector2(120, 132)
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_ktovo")
+
+[node name="EndSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_7ifs7")
+
+[node name="LevelSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_rhx1f")
+
+[node name="PowerupSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_7cq6h")
+
+[node name="PowerupTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Cactus" parent="." instance=ExtResource("11_o5mxe")]
+position = Vector2(56, 268)
+
+[node name="Cactus2" parent="." instance=ExtResource("11_o5mxe")]
+position = Vector2(205, 117)
+
+[node name="Cactus3" parent="." instance=ExtResource("11_o5mxe")]
+position = Vector2(80, 64)
+
+[node name="Cactus4" parent="." instance=ExtResource("11_o5mxe")]
+position = Vector2(191, 295)

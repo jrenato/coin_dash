@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwqnk8i3m6w71"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_q5d8m"]
+[ext_resource type="Texture2D" uid="uid://bxf0hs66vbfd0" path="res://Assets/PixelPlatform/characters_packed.png" id="2_ilkk3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg4dt"]
+atlas = ExtResource("2_ilkk3")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdoq5"]
+atlas = ExtResource("2_ilkk3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1yqow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg4dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdoq5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_li8hc"]
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_q5d8m")
+speed = 150
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_1yqow")
+frame_progress = 0.695021
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_li8hc")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1ops51hvuixr"]
+
+[ext_resource type="Texture2D" uid="uid://bjh3mx0ywf7ba" path="res://Assets/PixelPlatform/tiles_packed.png" id="1_lobkc"]
+[ext_resource type="Script" path="res://Collectables/coin.gd" id="1_yrlsf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s2pj"]
+atlas = ExtResource("1_lobkc")
+region = Rect2(198, 126, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu7gj"]
+atlas = ExtResource("1_lobkc")
+region = Rect2(216, 126, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndgal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6s2pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu7gj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yj3or"]
+radius = 7.07107
+
+[node name="Coin" type="Area2D" groups=["coins"]]
+script = ExtResource("1_yrlsf")
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.596078)
+position = Vector2(0, 10)
+scale = Vector2(0.833333, 0.388889)
+texture = ExtResource("1_lobkc")
+region_enabled = true
+region_rect = Rect2(198, 126, 18, 18)
+
+[node name="CoinAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_ndgal")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_yj3or")
